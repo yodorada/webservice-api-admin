@@ -1,0 +1,46 @@
+{
+  "name": "webservice-api-admin",
+  "version": "0.1.0",
+  "description": "Administration portal for Yodorada webservice rest api based on marmelab/admin-on-rest.",
+  "authors": [
+    {
+      "name": "Maya K. Herrmann | Yodorada",
+      "email": "coding@yodorada.de"
+    },
+    {
+      "name": "François Zaninotto | marmelab"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "admin-on-rest": "^1.4.0",
+    "aor-color-input": "^1.1.3",
+    "aor-dependent-input": "^1.2.0",
+    "aor-language-german": "^1.1.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "node-sass-chokidar": "^1.2.2",
+    "npm-run-all": "^4.1.2",
+    "prettier": "^1.11.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ -m ^[^_]",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ -m ^[^_] --watch --recursive",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
